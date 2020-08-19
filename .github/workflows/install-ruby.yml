@@ -1,0 +1,12 @@
+name: install ruby
+
+on:
+  push
+
+jobs:
+  ruby:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ruby/setup-ruby@master
+      with:
+        ruby-version: 2.7
