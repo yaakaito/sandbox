@@ -1,1 +1,22 @@
 name: Recreate updates branch
+
+on:
+  pull_request:
+    types: [closed]
+    branches: updates
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+          fetch-depth: 0
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "github-actions+${GITHUB_ACTOR}@users.noreply.github.com"
+          git checkout -b updates
+          git push https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git updates
