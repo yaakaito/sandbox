@@ -1,9 +1,7 @@
 name: Auto-merge Pull Request
 
 on:
-  pull_request:
-    branches: 
-      - "deps/**"
+  - pull_request
 
 jobs:
   build:
