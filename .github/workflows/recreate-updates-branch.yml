@@ -1,4 +1,4 @@
-name: Rebase updates branch
+name: Recreate/Rebase updates branch
 
 on:
   push:
@@ -18,6 +18,5 @@ jobs:
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "github-actions+${GITHUB_ACTOR}@users.noreply.github.com"
-          git checkout updates
-          git merge --ff-only master
+          git checkout -b updates
           git push https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git updates
